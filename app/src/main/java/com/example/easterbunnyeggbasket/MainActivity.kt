@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var infoText: TextView
 
     private lateinit var tapButton: ImageButton
+    private lateinit var tapToStartText: TextView
+
     private lateinit var resetButton: Button
     private lateinit var resetHighScoresButton: Button
     private lateinit var bottomButtons: View
@@ -111,6 +113,8 @@ class MainActivity : AppCompatActivity() {
         infoText = findViewById(R.id.textViewInfo)
 
         tapButton = findViewById(R.id.tapButton)
+        tapToStartText = findViewById(R.id.tapToStartText)
+
         resetButton = findViewById(R.id.resetButton)
         resetHighScoresButton = findViewById(R.id.resetHighScoresButton)
         bottomButtons = findViewById(R.id.bottomButtons)
@@ -170,6 +174,7 @@ class MainActivity : AppCompatActivity() {
         tapButton.setOnClickListener {
             if (!isRunning) {
                 isRunning = true
+                tapToStartText.visibility = View.GONE
                 hideGameUI()     // прячем нижние кнопки и старую карточку
                 timer.start()
             }

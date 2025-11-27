@@ -91,6 +91,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <TextView
+        android:id="@+id/tapToStartText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tap_to_start"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:padding="6dp"
+        android:shadowColor="#AA000000"
+        android:shadowRadius="4"
+        app:layout_constraintTop_toBottomOf="@id/tapButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
+
+
     <!-- ===== ИТОГОВЫЙ БЛОК-КАРТОЧКА (ПОСЛЕ ИГРЫ) ===== -->
 
     <LinearLayout

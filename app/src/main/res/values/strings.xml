@@ -54,5 +54,8 @@
     <string name="total_eggs_desc">Total eggs</string>
     <string name="rare_eggs_desc">Rare eggs</string>
 
+    <string name="tap_to_start">Tap the egg to start the game!</string>
+
+
 
 </resources>
