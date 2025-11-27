@@ -74,9 +74,11 @@ class MainActivity : AppCompatActivity() {
         // системные отступы
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            // паддинг только по бокам и снизу, сверху 0
+            v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
             insets
         }
+
 
         // размер экрана
         val mainLayout = findViewById<View>(R.id.main)
@@ -379,7 +381,11 @@ class MainActivity : AppCompatActivity() {
 
         tapButton.x = randomX.toFloat()
         tapButton.y = randomY.toFloat()
+
+        // 🔥 Всегда поверх всех кнопок и картинок
+        tapButton.bringToFront()
     }
+
 
     // --- пасхальное настроение в зависимости от результата ---
 

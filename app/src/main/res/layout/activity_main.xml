@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_easter"
     tools:context=".MainActivity">
+
+    <!-- ФОН (теперь через ImageView) -->
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_easter"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Весь контент поверх фона -->
+
 
     <!-- ВЕРХ: время и счётчик яиц -->
 
@@ -54,8 +69,8 @@
 
     <ImageButton
         android:id="@+id/tapButton"
-        android:layout_width="80dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="140dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/egg_button"
@@ -63,8 +78,6 @@
         app:layout_constraintTop_toBottomOf="@id/textViewInfo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-
 
 
     <!-- КНОПКИ СБРОСА И РЕКОРДЫ -->
@@ -115,10 +128,12 @@
         android:layout_height="120dp"
         android:layout_marginTop="16dp"
         android:visibility="gone"
+        android:contentDescription="@string/basket_content_desc"
         app:srcCompat="@drawable/easter_basket"
         app:layout_constraintTop_toBottomOf="@id/resetHighScoresButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 
     <!-- 🔥 ЗАЙЧИК ВЫЛЕЗАЕТ ИЗ-ЗА КОРЗИНЫ -->
 
@@ -127,11 +142,13 @@
         android:layout_width="120dp"
         android:layout_height="200dp"
         android:visibility="gone"
+        android:contentDescription="@string/bunny_content_desc"
         app:srcCompat="@drawable/easter_bunny"
         app:layout_constraintStart_toStartOf="@id/imgBasket"
         app:layout_constraintEnd_toEndOf="@id/imgBasket"
         app:layout_constraintBottom_toTopOf="@id/imgBasket"
         android:layout_marginBottom="-40dp" />
+
 
 
     <!-- ТЕКСТЫ ПОД ЗАЙЧИКОМ -->

@@ -40,4 +40,8 @@
     <string name="mood_super_line2">You are an Easter egg hero!</string>
     <string name="mood_super_line3">The bunny is proud of you.</string>
 
+
+    <string name="basket_content_desc">Easter basket with eggs</string>
+    <string name="bunny_content_desc">Easter bunny</string>
+
 </resources>
