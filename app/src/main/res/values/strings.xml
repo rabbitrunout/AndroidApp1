@@ -4,7 +4,7 @@
     <string name="app_name">Easter Bunny Egg Basket</string>
 
     <!-- game -->
-    <string name="time_left_20">Time Left: 20</string>
+    <string name="time_left_20">Time Left: 10</string>
     <string name="time_left">Time left: %1$d seconds</string>
     <string name="times_up">Times Up!</string>
 
@@ -20,28 +20,39 @@
     <string name="high_scores_cleared">High Scores Reset!</string>
     <string name="golden_egg_unlocked">Golden Egg unlocked!</string>
 
-    <!-- bunny text -->
+    <!-- bunny / support text -->
     <string name="bunny_greeting">Hi! I am your Easter Bunny!</string>
     <string name="bunny_another">Let us see how many eggs you can collect.</string>
     <string name="bunny_one_more">Tap the egg before it runs away.</string>
     <string name="change">Change Theme</string>
     <string name="change_back">Default Theme</string>
 
-    <!-- mood -->
-    <string name="mood_calm_title">Oh, almost no eggs...</string>
+    <!-- mood by result -->
+    <string name="mood_calm_title">Oh, almost no eggs…</string>
     <string name="mood_calm_line2">It is okay, we can hunt again.</string>
     <string name="mood_calm_line3">Try one more time.</string>
 
-    <string name="mood_balanced_title">Nice Easter egg hunt!</string>
-    <string name="mood_balanced_line2">Your basket looks pretty full.</string>
-    <string name="mood_balanced_line3">You are a great helper!</string>
+    <string name="mood_balanced_title">Great egg hunt!</string>
+    <string name="mood_balanced_line2">Your basket is filling up nicely.</string>
+    <string name="mood_balanced_line3">You are a strong egg hunter with great reaction!</string>
 
     <string name="mood_super_title">Wow! Basket is overflowing!</string>
     <string name="mood_super_line2">You are an Easter egg hero!</string>
     <string name="mood_super_line3">The bunny is proud of you.</string>
 
-
+    <!-- content descriptions -->
     <string name="basket_content_desc">Easter basket with eggs</string>
     <string name="bunny_content_desc">Easter bunny</string>
+
+    <!-- eggs counters -->
+    <string name="bonus_eggs_0">Bonus eggs: 0</string>
+    <string name="bonus_eggs">Bonus eggs: %1$d</string>
+
+    <string name="total_eggs_this_game">Total eggs this game: %1$d</string>
+    <string name="rare_eggs_this_game">Rare eggs this game: %1$d</string>
+
+    <string name="total_eggs_desc">Total eggs</string>
+    <string name="rare_eggs_desc">Rare eggs</string>
+
 
 </resources>
