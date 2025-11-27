@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Easter Bunny Egg Basket</string>
+
+    <!-- game -->
+    <string name="time_left_20">Time Left: 20</string>
+    <string name="time_left">Time left: %1$d seconds</string>
+    <string name="times_up">Times Up!</string>
+
+    <string name="eggs_collected_0">Eggs collected: 0</string>
+    <string name="eggs_collected">Eggs collected: %1$d</string>
+
+    <string name="start_collect_eggs">Tap the egg to collect it into the basket!</string>
+    <string name="tap_button">Egg Button</string>
+
+    <string name="reset">Reset</string>
+    <string name="top_5_scores">Top 5 Egg Hunters:</string>
+    <string name="reset_high_scores">Reset High Scores</string>
+    <string name="high_scores_cleared">High Scores Reset!</string>
+    <string name="golden_egg_unlocked">Golden Egg unlocked!</string>
+
+    <!-- bunny text -->
+    <string name="bunny_greeting">Hi! I am your Easter Bunny!</string>
+    <string name="bunny_another">Let us see how many eggs you can collect.</string>
+    <string name="bunny_one_more">Tap the egg before it runs away.</string>
+    <string name="change">Change Theme</string>
+    <string name="change_back">Default Theme</string>
+
+    <!-- mood -->
+    <string name="mood_calm_title">Oh, almost no eggs...</string>
+    <string name="mood_calm_line2">It is okay, we can hunt again.</string>
+    <string name="mood_calm_line3">Try one more time.</string>
+
+    <string name="mood_balanced_title">Nice Easter egg hunt!</string>
+    <string name="mood_balanced_line2">Your basket looks pretty full.</string>
+    <string name="mood_balanced_line3">You are a great helper!</string>
+
+    <string name="mood_super_title">Wow! Basket is overflowing!</string>
+    <string name="mood_super_line2">You are an Easter egg hero!</string>
+    <string name="mood_super_line3">The bunny is proud of you.</string>
+
+</resources>

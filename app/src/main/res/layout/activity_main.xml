@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_easter"
+    tools:context=".MainActivity">
+
+    <!-- ВЕРХ: время и счётчик яиц -->
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_left_20"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/countText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/eggs_collected_0"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/timerText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_collect_eggs"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/countText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- КНОПКА ЯЙЦА -->
+
+    <ImageButton
+        android:id="@+id/tapButton"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/egg_button"
+        android:contentDescription="@string/tap_button"
+        app:layout_constraintTop_toBottomOf="@id/textViewInfo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+
+
+    <!-- КНОПКИ СБРОСА И РЕКОРДЫ -->
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tapButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/topScoresText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/top_5_scores"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/resetButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/resetHighScoresButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reset_high_scores"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/orange"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toBottomOf="@id/topScoresText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 🔥 КОРЗИНКА ПО ЦЕНТРУ (ПОЯВЛЯЕТСЯ ПОСЛЕ ИГРЫ) -->
+
+    <ImageView
+        android:id="@+id/imgBasket"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/easter_basket"
+        app:layout_constraintTop_toBottomOf="@id/resetHighScoresButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- 🔥 ЗАЙЧИК ВЫЛЕЗАЕТ ИЗ-ЗА КОРЗИНЫ -->
+
+    <ImageView
+        android:id="@+id/imgBunny"
+        android:layout_width="120dp"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        app:srcCompat="@drawable/easter_bunny"
+        app:layout_constraintStart_toStartOf="@id/imgBasket"
+        app:layout_constraintEnd_toEndOf="@id/imgBasket"
+        app:layout_constraintBottom_toTopOf="@id/imgBasket"
+        android:layout_marginBottom="-40dp" />
+
+
+    <!-- ТЕКСТЫ ПОД ЗАЙЧИКОМ -->
+
+    <TextView
+        android:id="@+id/txtGreeting"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/bunny_greeting"
+        android:textColor="@color/sandy_brown"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/imgBunny"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtAnother"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bunny_another"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/txtGreeting"
+        app:layout_constraintStart_toStartOf="@id/txtGreeting" />
+
+    <TextView
+        android:id="@+id/txtOneMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bunny_one_more"
+        android:textColor="@color/blue"
+        android:textSize="14sp"
+        android:layout_marginTop="4dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/txtAnother"
+        app:layout_constraintStart_toStartOf="@id/txtAnother" />
+
+    <Button
+        android:id="@+id/btnChange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change"
+        android:textColor="@color/yellow"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/txtOneMore"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnChangeBack" />
+
+    <Button
+        android:id="@+id/btnChangeBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_back"
+        android:textColor="@color/yellow"
+        android:backgroundTint="@color/blue"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/txtOneMore"
+        app:layout_constraintStart_toEndOf="@id/btnChange"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
