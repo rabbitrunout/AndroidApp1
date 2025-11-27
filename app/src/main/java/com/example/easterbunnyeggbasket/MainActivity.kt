@@ -47,15 +47,11 @@ class MainActivity : AppCompatActivity() {
 
     // разные яйца
     private val eggDrawables = listOf(
-        R.drawable.egg_button,   // старое яйцо
-//        R.drawable.egg_blue,
+        R.drawable.egg_button,   // базовое яйцо
         R.drawable.egg_pink,
-        R.drawable.egg_green,
-//        R.drawable.egg_golden    // особое, если захочешь
+        R.drawable.egg_green
     )
-
     private var lastEggIndex = -1
-
 
     // --- блок пасхального зайчика / настроения ---
     private lateinit var imgBunny: ImageView
@@ -78,7 +74,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, 0, systemBars.right, systemBars.bottom)
             insets
         }
-
 
         // размер экрана
         val mainLayout = findViewById<View>(R.id.main)
@@ -132,7 +127,9 @@ class MainActivity : AppCompatActivity() {
                 updateTopScores()
                 updateMoodAndColors()
 
-                // показываем корзину и анимацию зайчика
+                // показываем кнопки после окончания игры (с анимацией)
+                showGameUIAfterFinish()
+                // анимация корзинки и зайчика
                 showBasketAndBunnyWithAnimation()
 
                 if (tapCount >= 30) {
@@ -148,6 +145,8 @@ class MainActivity : AppCompatActivity() {
         tapButton.setOnClickListener {
             if (!isRunning) {
                 isRunning = true
+                // игра началась — плавно прячем кнопки и конец-экран
+                hideGameUI()
                 timer.start()
             }
 
@@ -162,7 +161,6 @@ class MainActivity : AppCompatActivity() {
             moveButtonRandomly()
         }
 
-
         resetButton.setOnClickListener {
             if (isRunning) {
                 timer.cancel()
@@ -173,16 +171,18 @@ class MainActivity : AppCompatActivity() {
             tapButton.isEnabled = true
             isRunning = false
 
+            // возвращаем яйцо на исходную позицию
             tapButton.x = originalX
             tapButton.y = originalY
 
+            // сбрасываем тип яйца
             lastEggIndex = -1
             tapButton.setImageResource(R.drawable.egg_button)
 
             resetMoodTexts()
+            // скрываем только конец-экран (зайчик, корзина, тексты)
             setEndScreenVisible(false)
         }
-
 
         resetHighScoresButton.setOnClickListener {
             clearHighScores()
@@ -215,14 +215,11 @@ class MainActivity : AppCompatActivity() {
         displayTopScores()
         resetMoodTexts()
         countText.text = getString(R.string.eggs_collected, tapCount)
-        setEndScreenVisible(false)   // в начале всё спрятано
+        setEndScreenVisible(false)   // в начале зайчик и корзина спрятаны
     }
 
     // --- анимация: корзинка + зайчик ---
-
-    // --- анимация: корзинка + зайчик ---
     private fun showBasketAndBunnyWithAnimation() {
-        // сначала показываем корзину с мягким зумом
         imgBasket.apply {
             visibility = View.VISIBLE
             alpha = 0f
@@ -235,17 +232,22 @@ class MainActivity : AppCompatActivity() {
                 .scaleY(1f)
                 .setDuration(600)
                 .withEndAction {
-                    // теперь “вылезает” зайчик из-за корзины
+                    // показываем зайчика
                     imgBunny.visibility = View.VISIBLE
                     imgBunny.alpha = 0f
 
-                    // не трогаем y, только лёгкий подъём через translationY
-                    imgBunny.translationY = 80f   // старт ниже
+                    // старт — чуть ниже, как будто спрятан
+                    imgBunny.translationY = 80f
+                    imgBunny.scaleX = 1.05f
+                    imgBunny.scaleY = 1.05f
+
                     imgBunny.animate()
                         .alpha(1f)
-                        .translationY(0f)        // вернуться в нормальную позицию
+                        .translationY(0f)
                         .setDuration(600)
                         .withEndAction {
+                            // корзина поверх низа зайчика
+                            imgBasket.bringToFront()
                             showBunnyTextsAndButtons()
                         }
                         .start()
@@ -254,6 +256,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 
     private fun showBunnyTextsAndButtons() {
         val views = listOf(
@@ -275,8 +278,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // --- экран концовки (для сброса) ---
-
+    // --- экран концовки (для зайчика/корзины) ---
     private fun setEndScreenVisible(isVisible: Boolean) {
         val visibility = if (isVisible) View.VISIBLE else View.GONE
 
@@ -296,6 +298,46 @@ class MainActivity : AppCompatActivity() {
             v.alpha = 1f
             v.translationY = 0f
         }
+    }
+
+    // --- плавные анимации для UI игры ---
+
+    private fun fadeOutViews(vararg views: View) {
+        views.forEach { v ->
+            if (v.visibility == View.VISIBLE) {
+                v.animate()
+                    .alpha(0f)
+                    .setDuration(300)
+                    .withEndAction {
+                        v.visibility = View.GONE
+                        v.alpha = 1f // вернуть, чтобы при следующем показе был нормальный альфа
+                    }
+                    .start()
+            }
+        }
+    }
+
+    private fun fadeInViews(vararg views: View) {
+        views.forEach { v ->
+            v.alpha = 0f
+            v.visibility = View.VISIBLE
+            v.animate()
+                .alpha(1f)
+                .setDuration(300)
+                .start()
+        }
+    }
+
+    // прячем всё, что не нужно во время активной игры
+    private fun hideGameUI() {
+        fadeOutViews(resetButton, resetHighScoresButton, topScoresText)
+        setEndScreenVisible(false)
+    }
+
+    // показываем кнопки после окончания игры
+    private fun showGameUIAfterFinish() {
+        fadeInViews(resetButton, resetHighScoresButton, topScoresText)
+        // конец-экран показывает отдельная анимация
     }
 
     // --- рекорды ---
@@ -346,14 +388,13 @@ class MainActivity : AppCompatActivity() {
         topScores.clear()
     }
 
-    // --- движение яйца по экрану ---
-    // Случайно выбираем яйцо, стараясь не повторять предыдущее
+    // --- разные яйца + движение по экрану ---
+
     private fun setRandomEggImage() {
         if (eggDrawables.isEmpty()) return
 
         var index = Random.nextInt(eggDrawables.size)
         if (eggDrawables.size > 1) {
-            // чтобы не было два одинаковых подряд
             while (index == lastEggIndex) {
                 index = Random.nextInt(eggDrawables.size)
             }
@@ -362,9 +403,6 @@ class MainActivity : AppCompatActivity() {
         lastEggIndex = index
         val drawableId = eggDrawables[index]
         tapButton.setImageResource(drawableId)
-
-        // пример: если выпало золотое яйцо — можно сделать бонус
-
     }
 
     private fun moveButtonRandomly() {
@@ -382,10 +420,9 @@ class MainActivity : AppCompatActivity() {
         tapButton.x = randomX.toFloat()
         tapButton.y = randomY.toFloat()
 
-        // 🔥 Всегда поверх всех кнопок и картинок
+        // яйцо всегда поверх всех кнопок и картинок
         tapButton.bringToFront()
     }
-
 
     // --- пасхальное настроение в зависимости от результата ---
 
